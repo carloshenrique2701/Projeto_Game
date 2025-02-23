@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #87CEEB;
+}
+
+#game-container {
+    position: relative;
+    width: 800px;
+    height: 400px;
+    margin: 0 auto;
+    background-color: #4CAF50;
+    border: 2px solid #000;
+}
+
+#player {
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+    width: 50px;
+    height: 50px;
+    background-image: url('player-static.png');
+    background-size: cover;
+}
+
+.obstacle {
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    background-color: #8B4513;
+}
+
+#lives {
+    text-align: center;
+    font-size: 24px;
+    margin-top: 20px;
+}

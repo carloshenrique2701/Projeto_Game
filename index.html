@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Jogue agora ...</title>
+        <link rel="stylesheet" href="estilo.css">
+
+    </head>
+    <body>
+
+        <div class="main">
+
+            <div class="left">
+
+                <h1 align="center">Jogue agora "Nome-do-Jogo"</h1>
+
+                <div class="video">Video do jogo(gif)</div>
+
+            </div>
+
+            <div class="rigth">
+
+                <form action="back/form.java" id="formulario-login" style="display: block;">
+
+                    <h1 class="h1-form">Faça seu login aqui</h1>
+
+                    <input type="email" placeholder="Digite seu email aqui...">
+                    <input type="password" placeholder="Digite sua senha aqui...">
+
+                    <button id="enviar">Login</button>
+
+                    <a href="#" onclick="registrar(true)">Registre-se aqui</a>
+
+                </form>
+                <form action="back/form.java" id="formulario-registro" style="display: none;">
+
+                    <h1 class="h1-form">Registre-se aqui</h1>
+
+                    <input type="text" placeholder="Digite seu nome completo aqui...">
+                    <input type="email" placeholder="Digite seu email aqui...">
+                    <input type="password" placeholder="Digite sua senha aqui...">
+
+                    <input type="date" >
+
+                    <button id="enviar">Login</button>
+                    <a href="#" onclick="registrar(false)">Voltar</a>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <script>
+
+            function registrar(e) {
+
+                if(e) {
+
+                    const login = document.getElementById('formulario-login');
+                    login.style.display = 'none';
+
+                    const registro = document.getElementById('formulario-registro');
+                    registro.style.display = 'block';
+
+                } else{
+
+                    const login = document.getElementById('formulario-login');
+                    login.style.display = 'block';
+
+                    const registro = document.getElementById('formulario-registro');
+                    registro.style.display = 'none';
+
+                }
+
+                
+            }
+
+        </script>
+        
+    </body>
+</html>
