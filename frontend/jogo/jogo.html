@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo - Projeto Game</title>
+    <link rel="stylesheet" href="/jogo/css/game.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1>Bem-vindo ao Jogo!</h1>
+        <div id="user-info"></div>
+        <!-- Conteúdo do jogo aqui -->
+    </div>
+
+    <script>
+        // Verifica se o usuário está logado
+        const user = JSON.parse(localStorage.getItem('user'));
+        
+        if (!user) {
+            // Se não estiver logado, redireciona para login
+            window.location.href = '/login.html';
+        } else {
+            // Mostra informações do usuário
+            document.getElementById('user-info').innerHTML = `
+                <p>Logado como: ${user.nome}</p>
+                <p>Email: ${user.email}</p>
+                <button onclick="logout()">Sair</button>
+            `;
+        }
+        
+        function logout() {
+            localStorage.removeItem('user');
+            window.location.href = '/login.html';
+        }
+    </script>
+</body>
+</html>
