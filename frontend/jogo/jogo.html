@@ -2,36 +2,72 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo - Projeto Game</title>
-    <link rel="stylesheet" href="/jogo/css/game.css">
+    <link rel="stylesheet" href="css/jogo.css">
 </head>
 <body>
-    <div id="game-container">
-        <h1>Bem-vindo ao Jogo!</h1>
-        <div id="user-info"></div>
-        <!-- Conteúdo do jogo aqui -->
+    <div id="game-container" style="display: block;">
+        <header>
+
+            <h1 align="center">Sussuros do Labirinto</h1>
+
+            <p id="apelido">testar <img src="imgs/perfil.png" alt="imagem de perfil" onclick="showOptions()"></p>
+
+        </header>
+        
+        <div class="options" style="display: none;">
+                
+            <ol>
+                <a href="../perfil/perfil.html"><li>Meu Perfil</li></a>
+                <a href="../ranking/ranking.html"><li>Ranking</li></a>
+                <li>Logout</li>
+            </ol>
+
+        </div>
+
+        <div class="content">
+
+            <div class="tutorial">
+
+
+            </div>
+
+            <div class="game">
+                
+            </div>
+
+        </div>
+        
+    </div>
+
+    <div class="footer">
+            <p>&copy; 2023 Projeto Game. Todos os direitos reservados.</p>
+        </div>
+
+    <div class="apelido" style="display: none;">
+
+        <h1>Qual é sou apelido?(Esse apelido irá aparecer para todos na comunidade)</h1>
+        <input type="text" placeholder="Digite seu apelido">
+
     </div>
 
     <script>
-        // Verifica se o usuário está logado
-        const user = JSON.parse(localStorage.getItem('user'));
-        
-        if (!user) {
-            // Se não estiver logado, redireciona para login
-            window.location.href = '/login.html';
-        } else {
-            // Mostra informações do usuário
-            document.getElementById('user-info').innerHTML = `
-                <p>Logado como: ${user.nome}</p>
-                <p>Email: ${user.email}</p>
-                <button onclick="logout()">Sair</button>
-            `;
+
+        function showOptions() {
+
+            divOptions = document.querySelector('.options');
+
+            if (divOptions.style.display === 'block') {
+                divOptions.style.display = 'none';
+                return;
+            }else{
+                divOptions.style.display = 'block';
+            }
+            
         }
+
         
-        function logout() {
-            localStorage.removeItem('user');
-            window.location.href = '/login.html';
-        }
     </script>
 </body>
 </html>
