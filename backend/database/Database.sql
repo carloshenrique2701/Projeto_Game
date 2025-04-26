@@ -1,9 +1,10 @@
 create database Jogo_Dados;
 
-use Jogo_Dados;
+/* Convertido para postgresql */;
 
+-- SQLINES FOR EVALUATION USE ONLY (14 DAYS)
 create table Usuario(
-    id_usuario int primary key not null auto_increment,
+    id_usuario int primary key not null generated always as identity,
     nome varchar(100) not null,
     email varchar(100) not null,
     senha varchar(20) not null,
@@ -12,9 +13,9 @@ create table Usuario(
 );
 
 create table Jogador(
-    id_jogador int primary key not null auto_increment,
+    id_jogador int primary key not null generated always as identity,
     nome varchar(100) not null, 
-    record time,  
+    record time(0),  
     id_usuario int,  
     foreign key (id_usuario) references Usuario(id_usuario) 
 );
