@@ -5,7 +5,6 @@ use Jogo_Dados;
 create table Usuario(
     id_usuario int primary key not null auto_increment,
     nome varchar(100) not null,
-    idade int not null,
     email varchar(100) not null,
     senha varchar(20) not null,
     id_jogador int,  
