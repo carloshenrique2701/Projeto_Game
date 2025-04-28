@@ -1,5 +1,4 @@
 :root {
-
     --text-color: #f0f0f0;
     --background-dark: #060433;
     --primary-color: #3a3956;
@@ -9,19 +8,15 @@
     --border-radius: 14px;
     --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     --transition: all 0.3s ease;
-
 }
 
 * {
-
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-
 }
 
 body {
-
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--background-dark);
     color: var(--text-color);
@@ -29,11 +24,10 @@ body {
     display: flex;
     flex-direction: column;
     line-height: 1.6;
-
 }
 
+/* Container Principal */
 #perfil-container {
-
     width: 90%;
     max-width: 1200px;
     margin: 20px auto;
@@ -42,12 +36,10 @@ body {
     background-color: #1a193e;
     box-shadow: var(--box-shadow);
     flex-grow: 1;
-
 }
 
-
+/* Cabeçalho */
 header {
-
     display: flex;
     padding: 20px;
     justify-content: center;
@@ -56,29 +48,28 @@ header {
     border-radius: var(--border-radius);
     margin-bottom: 30px;
     position: relative;
-
 }
 
 header h1 {
-
     font-size: 2.5rem;
     color: var(--text-color);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     margin: 0;
-
+    width: 100%;
+    text-align: center;
 }
 
-a {
-    text-decoration: none;
-    display: inline-block;
+/* Botão Voltar */
+.back-button {
+    position: absolute;
     left: 20px;
-    top: 20px; 
-    z-index: 10; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    top: 50%;
+    transform: translateY(-50%);
+    text-decoration: none;
+    z-index: 10;
 }
-button {
+
+.back-button button {
     display: flex;
     height: 3em;
     width: 100px;
@@ -92,40 +83,33 @@ button {
     cursor: pointer;
     border: none;
     font-weight: 600;
-    font-family: inherit;
     box-shadow: var(--box-shadow);
-    position: absolute;
-    right: 20px;
-    margin: 0;
     padding: 0 15px;
 }
 
-button:hover {
+.back-button button:hover {
     background-color: var(--hover-color);
     transform: translateY(-2px);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
 }
 
-button:active {
+.back-button button:active {
     transform: translateY(0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-/* Se você estiver usando ícones no botão */
-button > svg {
+.back-button button > svg {
     margin-right: 8px;
     transition: var(--transition);
     fill: var(--text-color);
 }
 
-button:hover > svg {
+.back-button button:hover > svg {
     transform: translateX(3px);
 }
 
-
-
+/* Conteúdo Principal */
 .content {
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -134,140 +118,62 @@ button:hover > svg {
     padding: 30px;
     margin-bottom: 30px;
     gap: 30px;
-
+    animation: fadeIn 0.5s ease-out forwards;
 }
-.content img {
 
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid var(--accent-color);
+/* Tabela de Ranking */
+.ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: var(--border-radius);
+    overflow: hidden;
     box-shadow: var(--box-shadow);
-    transition: var(--transition);
-
-}
-.content img:hover {
-
-    transform: scale(1.05);
-
-}
-
-
-.infos {
-
-    width: 100%;
     background-color: var(--secondary-color);
-    border-radius: var(--border-radius);
-    padding: 30px;
-    text-align: center;
 }
 
-.infos h1 {
-
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: var(--accent-color);
-
-}
-.infos p {
-
-    font-size: 1.2rem;
-    margin: 15px 0;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-
-}
-.infos span {
-
-    font-weight: bold;
-    color: var(--accent-color);
-
+.ranking-table th, 
+.ranking-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--hover-color);
 }
 
-
-.settings {
-
-    width: 100%;
-    background-color: var(--secondary-color);
-    border-radius: var(--border-radius);
-    padding: 30px;
-
+.ranking-table th {
+    background-color: var(--accent-color);
+    color: white;
+    font-weight: 600;
 }
-.settings h1 {
 
-    font-size: 2rem;
-    margin-bottom: 20px;
-    text-align: center;
-    color: var(--accent-color);
-
+.ranking-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05);
 }
-.settings h3 {
 
-    padding: 15px 20px;
-    margin: 10px 0;
-    background-color: var(--primary-color);
-    border-radius: 8px;
-    font-size: 1.2rem;
-    transition: var(--transition);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-}
-.settings h3:hover {
-
+.ranking-table tr:hover {
     background-color: var(--hover-color);
-    transform: translateX(5px);
-
-}
-.settings h3:active {
-
-    transform: scale(0.98);
-
-}
-input[type="checkbox"] {
-
-    accent-color: var(--accent-color);
-
-}
-.settings h3 label {
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    cursor: pointer;
-
-}
-.settings input[type="checkbox"] {
-
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    margin-left: 15px;
-
 }
 
-
+/* Rodapé */
 .footer {
-
     background-color: var(--primary-color);
     text-align: center;
     padding: 20px;
     margin-top: auto;
     border-radius: 0 0 var(--border-radius) var(--border-radius);
-
 }
-.footer p {
 
+.footer p {
     font-size: 1rem;
     opacity: 0.8;
-
+    margin: 0;
 }
 
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
+/* Responsividade */
 @media (max-width: 768px) {
     #perfil-container {
         width: 95%;
@@ -282,49 +188,44 @@ input[type="checkbox"] {
         padding: 20px;
     }
     
-    .content img {
-        width: 150px;
-        height: 150px;
+    .ranking-table th, 
+    .ranking-table td {
+        padding: 10px;
+        font-size: 0.9rem;
     }
     
-    .infos h1, .settings h1 {
-        font-size: 1.5rem;
+    .back-button {
+        top: auto;
+        transform: none;
+        margin-bottom: auto;
+        text-align: center
     }
     
-    .infos p, .settings h3 {
-        font-size: 1rem;
+    .back-button button {
+        width: auto;
+    }
+    
+    header {
+        flex-direction: column;
+        padding: 15px;
     }
 }
 
 @media (max-width: 480px) {
-    .infos, .settings {
-        padding: 15px;
+    .ranking-table {
+        font-size: 0.8rem;
     }
     
-    .settings h3 {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+    .ranking-table th, 
+    .ranking-table td {
+        padding: 8px 5px;
     }
-}
-
-
-
-/* Animação sutil ao carregar */
-@keyframes fadeIn {
-    from { 
-        opacity: 0; transform: translateY(20px); 
-    }
-    to { 
-        opacity: 1; transform: translateY(0); 
-    }
-}
-
-.content > * {
-
-    animation: fadeIn 0.5s ease-out forwards;
     
+    .ranking-table th:nth-child(2),
+    .ranking-table td:nth-child(2) {
+        max-width: 120px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
-
-.infos { animation-delay: 0.1s; }
-.settings { animation-delay: 0.2s; }
