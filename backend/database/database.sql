@@ -1,14 +1,11 @@
-create database Jogo_Dados;
-
-use Jogo_Dados;
+create database projeto_game;
+use projeto_game;
 
 create table Usuario(
     id_usuario int primary key not null auto_increment,
     nome varchar(100) not null,
     email varchar(100) not null,
-    senha varchar(20) not null,
-    id_jogador int,  
-    foreign key (id_jogador) references Jogador(id_jogador)  
+    senha varchar(20) not null
 );
 
 create table Jogador(
@@ -18,4 +15,11 @@ create table Jogador(
     id_usuario int,  
     foreign key (id_usuario) references Usuario(id_usuario) 
 );
+
+ALTER TABLE Usuario
+ADD COLUMN  id_jogador INT;
+
+ALTER TABLE Usuario
+ADD CONSTRAINT id_jogador
+foreign key (id_jogador) references Jogador(id_jogador);
 
