@@ -7,32 +7,41 @@ function trocarForms() {
     registerForm.classList.toggle('active');
 }
 
-// Login tradicional
-document.getElementById('enviar-login').addEventListener('click', async () => {
+// Login tradicional - Versão corrigida
+document.getElementById('enviar-login').addEventListener('click', async (e) => {
+    e.preventDefault(); // Impede o comportamento padrão do formulário
+    
     const email = document.getElementById('login-email').value;
     const senha = document.getElementById('login-senha').value;
     
     try {
-        const response = await fetch('/api/login', {
+        const response = await fetch('http://localhost:5000/login', { // Endpoint corrigido
             method: 'POST',
-            headers: { 
+            headers: {
                 'Content-Type': 'application/json',
-                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
             },
-            body: JSON.stringify({ email, senha })
+            body: JSON.stringify({ 
+                email: email,
+                senha: senha 
+            })
         });
-        
+
         const data = await response.json();
         
         if (response.ok) {
-            // Redireciona para a página do jogo após login
-            window.location.href = '/jogo/jogo.html';
+            // Armazena o token/localStorage se usar autenticação JWT
+            localStorage.setItem('token', data.token || '');
+
+            localStorage.setItem('usuario', JSON.stringify(data.usuario));
+            
+            // Redireciona para a página do jogo
+            window.location.href = '../jogo/jogo.html'; // Ajuste o caminho conforme necessário
         } else {
-            showAlert(data.error || 'Erro no login', 'error');
+            alert(data.message || 'Email ou senha incorretos');
         }
     } catch (error) {
         console.error('Erro:', error);
-        showAlert('Erro ao conectar com o servidor', 'error');
+        alert('Erro ao conectar com o servidor: ' + error.message);
     }
 });
 
@@ -40,51 +49,30 @@ document.getElementById('enviar-login').addEventListener('click', async () => {
 document.getElementById('google-login').addEventListener('click', () => {
     window.location.href = '/auth/google';
 });
-
-// Registro tradicional
+// Corrigindo a função de registro
 document.getElementById('enviar-registro').addEventListener('click', async () => {
-    const userData = {
-        nome: document.getElementById('reg-nome').value,
-        email: document.getElementById('reg-email').value,
-        senha: document.getElementById('reg-senha').value,
-        dataNasc: document.getElementById('reg-data').value
-    };
+    const nome = document.getElementById('reg-nome').value;  // Corrigido aqui
+    const email = document.getElementById('reg-email').value;
+    const senha = document.getElementById('reg-senha').value;
     
     try {
-        const response = await fetch('/api/register', {
+        const response = await fetch('http://localhost:5000/cadastrar', {
             method: 'POST',
-            headers: { 
+            headers: {
                 'Content-Type': 'application/json',
-                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
             },
-            body: JSON.stringify(userData)
+            body: JSON.stringify({ nome, email, senha })  // Variáveis corretas
         });
-        
+
         const data = await response.json();
-        
         if (response.ok) {
-            showAlert('Registro realizado com sucesso!', 'success');
-            toggleForms();
-            // Limpa o formulário
-            document.getElementById('register-form').reset();
+            alert('Cadastro realizado com sucesso!');
+            trocarForms();  // Volta para o login
         } else {
-            showAlert(data.error || 'Erro no registro', 'error');
+            alert(data.message || 'Erro no cadastro');
         }
     } catch (error) {
         console.error('Erro:', error);
-        showAlert('Erro ao conectar com o servidor', 'error');
+        alert('Erro ao conectar com o servidor: ' + error.message);
     }
 });
-
-// Função para exibir alertas
-function showAlert(message, type) {
-    const alertDiv = document.createElement('div');
-    alertDiv.className = `alert alert-${type}`;
-    alertDiv.textContent = message;
-    
-    document.body.prepend(alertDiv);
-    
-    setTimeout(() => {
-        alertDiv.remove();
-    }, 5000);
-}

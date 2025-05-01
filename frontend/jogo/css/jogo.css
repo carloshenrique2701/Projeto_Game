@@ -119,6 +119,7 @@ header img:hover {
     padding: 12px 20px;
     transition: var(--transition);
     position: relative;
+    cursor: pointer;
 }
 
 .options li:hover {
@@ -170,6 +171,73 @@ header img:hover {
     min-height: 500px;
 }
 
+/* Estilo para a div apelido - igual aos outros modais */
+.apelido {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--box-shadow);
+    z-index: 1001;
+    width: 100%;
+    max-width: 500px;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+.apelido h1 {
+    color: var(--accent-color);
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.apelido input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: var(--border-radius);
+    border: none;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.apelido button {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.apelido button:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+/* Adicionando o overlay quando o modal estiver aberto */
+body.modal-open-apelido::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
 
 /* Footer Styles */
 .footer {

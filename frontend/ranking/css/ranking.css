@@ -59,7 +59,7 @@ header h1 {
     text-align: center;
 }
 
-/* Botão Voltar Uiverse.io*/
+/* Botão Voltar */
 .back-button {
     position: absolute;
     left: 20px;
@@ -121,35 +121,85 @@ header h1 {
     animation: fadeIn 0.5s ease-out forwards;
 }
 
-/* Tabela de Ranking */
+/* Tabela de Ranking - NOVO ESTILO */
 .ranking-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 20px 0;
+    background-color: var(--secondary-color);
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--box-shadow);
-    background-color: var(--secondary-color);
-}
-
-.ranking-table th, 
-.ranking-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid var(--hover-color);
 }
 
 .ranking-table th {
     background-color: var(--accent-color);
     color: white;
-    font-weight: 600;
+    padding: 15px;
+    text-align: left;
+    font-size: 1.1rem;
 }
 
-.ranking-table tr:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.05);
+.ranking-table th:first-child {
+    border-top-left-radius: var(--border-radius);
+}
+
+.ranking-table th:last-child {
+    border-top-right-radius: var(--border-radius);
+}
+
+.ranking-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ranking-table tr:last-child td {
+    border-bottom: none;
 }
 
 .ranking-table tr:hover {
     background-color: var(--hover-color);
+}
+
+/* Estilo para os top 3 */
+.ranking-table tr.top-1 {
+    background-color: rgba(255, 215, 0, 0.1);
+}
+
+.ranking-table tr.top-1 td:first-child {
+    position: relative;
+}
+
+.ranking-table tr.top-1 td:first-child::before {
+    content: "🥇";
+    margin-right: 8px;
+}
+
+.ranking-table tr.top-2 {
+    background-color: rgba(192, 192, 192, 0.1);
+}
+
+.ranking-table tr.top-2 td:first-child::before {
+    content: "🥈";
+    margin-right: 8px;
+}
+
+.ranking-table tr.top-3 {
+    background-color: rgba(205, 127, 50, 0.1);
+}
+
+.ranking-table tr.top-3 td:first-child::before {
+    content: "🥉";
+    margin-right: 8px;
+}
+
+/* Mensagens de estado */
+.carregando, .sem-dados, .erro-carregamento {
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 /* Rodapé */
@@ -195,14 +245,15 @@ header h1 {
     }
     
     .back-button {
-        top: auto;
+        position: static;
         transform: none;
-        margin-bottom: auto;
-        text-align: center
+        margin-bottom: 15px;
+        text-align: center;
     }
     
     .back-button button {
         width: auto;
+        margin: 0 auto;
     }
     
     header {
@@ -213,12 +264,12 @@ header h1 {
 
 @media (max-width: 480px) {
     .ranking-table {
-        font-size: 0.8rem;
+        display: block;
+        overflow-x: auto;
     }
     
-    .ranking-table th, 
-    .ranking-table td {
-        padding: 8px 5px;
+    .ranking-table th {
+        font-size: 0.9rem;
     }
     
     .ranking-table th:nth-child(2),

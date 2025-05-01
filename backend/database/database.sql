@@ -10,16 +10,11 @@ create table Usuario(
 
 create table Jogador(
     id_jogador int primary key not null auto_increment,
-    nome varchar(100) not null, 
+    apelido varchar(100) not null, 
     record time,  
-    id_usuario int,  
+    show_in_rank boolean,
+    id_usuario int is not null,  
     foreign key (id_usuario) references Usuario(id_usuario) 
 );
 
-ALTER TABLE Usuario
-ADD COLUMN  id_jogador INT;
-
-ALTER TABLE Usuario
-ADD CONSTRAINT id_jogador
-foreign key (id_jogador) references Jogador(id_jogador);
 

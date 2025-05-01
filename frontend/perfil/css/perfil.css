@@ -441,6 +441,176 @@ input[type="checkbox"] {
   right: auto;
 }
 
+/* Estilos para o modal de alteração de senha */
+#alterSenha {
+  flex-direction: column;
+  gap: 20px;
+}
+
+.verificacaoEmail, .verificarSenha {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.verificacaoEmail h1, .verificarSenha h1 {
+  color: #ecf0f1;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.verificacaoEmail input, .verificarSenha input {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+}
+
+.verificacaoEmail button, .verificarSenha button {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.verificacaoEmail button:hover, .verificarSenha button:hover {
+  background: #2980b9;
+}
+
+/* Estilos para o modal de alteração de apelido */
+#alterApelidoDiv {
+  flex-direction: column;
+  gap: 20px;
+}
+
+#alterApelidoDiv h1 {
+  color: #ecf0f1;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+#alterApelidoDiv input {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+}
+
+#alterApelidoDiv button {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+#alterApelidoDiv button:hover {
+  background: #2980b9;
+}
+
+/* Estilos específicos para o modal de desativação de conta */
+#desativarContaDiv .confirmacao {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 100%;
+}
+
+#desativarContaDiv .conf1,
+#desativarContaDiv .conf2,
+#desativarContaDiv .conf3 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background-color: var(--secondary-color);
+  border-radius: var(--border-radius);
+  animation: fadeIn 0.4s ease-out;
+}
+
+#desativarContaDiv h1 {
+  color: var(--accent-color);
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+#desativarContaDiv h2 {
+  color: var(--text-color);
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+#desativarContaDiv span {
+  color: #ff6b6b;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+#senhaDesativacao {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--accent-color);
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--text-color);
+  font-size: 1rem;
+  margin: 10px 0;
+  transition: var(--transition);
+}
+
+#senhaDesativacao:focus {
+  outline: none;
+  border-color: var(--hover-color);
+  box-shadow: 0 0 0 2px rgba(108, 94, 231, 0.3);
+}
+
+#desativarContaDiv button {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  border: none;
+  padding: 12px 25px;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--box-shadow);
+  width: auto;
+  margin: 5px 0;
+}
+
+#desativarContaDiv button:hover {
+  background-color: #5a4bc2;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+}
+
+#desativarContaDiv button:active {
+  transform: translateY(0);
+}
+
+/* Botão de confirmação final - destaque diferente */
+#desativarContaDiv .conf3 button {
+  background-color: #e74c3c;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+}
+
+#desativarContaDiv .conf3 button:hover {
+  background-color: #c0392b;
+}
+
+
 /* Estilo para a div de desativação de conta */
 .conf1, .conf2, .conf3 {
   display: flex;
