@@ -19,7 +19,7 @@ db_config = {
     'database': 'projeto_game',
 }
 
-
+#ROTAS PARA CADASTRO DO USUÁRIO + INFORMAÇÕES PARA O PERFIL
 #Rotas de login e logout
 @app.route('/cadastrar', methods=['POST'])
 def cadastrar_usuario():
@@ -77,21 +77,21 @@ def login_usuario():
         if not usuario:
             return jsonify({'message': 'Credenciais inválidas'}), 401
             
-        # Verificação básica de senha (em produção use bcrypt)
+
         if usuario['senha'] != senha:
             return jsonify({'message': 'Credenciais inválidas'}), 401
 
-        # Em produção, gere um token JWT aqui
+        #Retorna ao frontend o id do usuário e o token para autenticação
         return jsonify({
             'message': 'Login bem-sucedido',
             'usuario': {
                 'id': usuario['id_usuario'],
                 'nome': usuario['nome']
             },
-            'token': 'token_gerado'  # Substitua por JWT real em produção
+            'token': 'token_gerado'  
         }), 200
 
-    except Exception as e:
+    except Exception as e:#tratamento de erros
         print("Erro no login:", str(e))
         return jsonify({'message': 'Erro no servidor'}), 500
     finally:
@@ -121,7 +121,7 @@ def logout():
         return jsonify({'message': 'Erro durante logout', 'success': False}), 500
 
 
-#Rotas de verificação
+#ROTAS DE VERIFICAÇÃO
 @app.route('/check-apelido', methods=['GET'])
 def check_apelido():
     try:
@@ -138,6 +138,7 @@ def check_apelido():
         
         resultado = cursor.fetchone()
         
+        # Retorna se tem ou nao apelido
         return jsonify({
             'temApelido': resultado is not None,
             'apelido': resultado['apelido'] if resultado else None
@@ -155,8 +156,9 @@ def check_apelido():
 def registrar_apelido():
     try:
         dados = request.get_json()
-        print(f"Dados recebidos: {dados}")  # Log adicional
+        print(f"Dados recebidos: {dados}")  
         
+        # Verifica se dados foram recebidos ou se os campos obrigatórios estão presentes
         if not dados or 'usuario_id' not in dados or 'apelido' not in dados:
             return jsonify({'success': False, 'message': 'Dados incompletos'}), 400
 
@@ -172,7 +174,7 @@ def registrar_apelido():
         # Verifica se apelido já existe
         cursor.execute("SELECT id_jogador FROM Jogador WHERE apelido = %s", (apelido,))
         if cursor.fetchone():
-            print(f"Apelido já existe: {apelido}")  # Log adicional
+            print(f"Apelido já existe: {apelido}")  
             return jsonify({
                 'success': False,
                 'message': 'Este apelido já está em uso'
@@ -187,13 +189,13 @@ def registrar_apelido():
         conexao.commit()
         print(f"Apelido registrado com sucesso: {apelido} para usuário {usuario_id}")  # Log
         
-        return jsonify({
+        return jsonify({ #Retorna ao frontend o apelido registrado
             'success': True,
             'message': 'Apelido registrado com sucesso!',
             'apelido': apelido
         })
         
-    except Exception as e:
+    except Exception as e: #tratamento de erros
         print(f"Erro completo ao registrar apelido: {str(e)}", flush=True)  # Log detalhado
         if 'conexao' in locals():
             conexao.rollback()
@@ -201,7 +203,7 @@ def registrar_apelido():
             'success': False,
             'message': f'Erro no servidor: {str(e)}'
         }), 500
-    finally:
+    finally: #fechar conexão com o banco de dados se estiver aberta
         if 'conexao' in locals() and conexao.is_connected():
             cursor.close()
             conexao.close()
@@ -303,7 +305,7 @@ def verificar_email():
     try:
         dados = request.get_json()
         email = dados['email'].strip()
-        usuario_id = dados.get('usuario_id')  # Opcional para verificação adicional
+        usuario_id = dados.get('usuario_id')  # Verifica se 'usuario_id' foi fornecido
         
         if not email:
             return jsonify({'success': False, 'message': 'Email não pode ser vazio'}), 400

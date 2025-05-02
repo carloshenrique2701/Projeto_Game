@@ -131,9 +131,7 @@ async function alterarSenha() {
             
             // Limpa o email temporário
             localStorage.removeItem('email_validado');
-            
-            // Atualiza o token/localStorage se necessário
-            // (em uma implementação real com JWT, você faria novo login)
+
         } else {
             showFeedback(data.message || 'Erro ao alterar senha', 'error');
         }
@@ -211,7 +209,6 @@ async function alterarApelido() {
 }
 
 
-// Adicione estas funções no configuracoes.js
 
 let senhaCorreta = false;
 
@@ -287,6 +284,10 @@ async function desativarConta() {
 }
 
 
+/**
+ * Atualiza a preferência de tabela do usuário, informando se ele deseja
+ * ser exibido na tabela de ranking ou não.
+ */
 async function atualizarPreferenciaTabela(mostrar) {
     const usuario = JSON.parse(localStorage.getItem('usuario'));
     

@@ -1,15 +1,14 @@
-
 function showApelidoModal() {
     document.querySelector('.apelido').style.display = 'flex';
     document.body.classList.add('modal-open-apelido');
     
-    // Foca no input automaticamente
+    // Foca no input automaticamente para facilitar a digitação
     document.querySelector('.apelido input').focus();
 }
 
 function closeAllModals() {
     // Fecha todos os modais (incluindo o de apelido)
-    const modals = document.querySelectorAll('.modal, .apelido'); // Adicionei .apelido aqui
+    const modals = document.querySelectorAll('.modal, .apelido');
     modals.forEach(modal => {
         modal.style.display = 'none';
     });
@@ -88,7 +87,8 @@ async function registrarApelido() {
             throw new Error(data.message || 'Erro ao registrar apelido');
         }
         closeAllModals();
-        // Atualiza a UI
+        
+        // Atualiza a interface
         document.querySelector('.apelido').style.display = 'none';
         document.getElementById('apelido').textContent = apelido;
         

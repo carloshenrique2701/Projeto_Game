@@ -23,8 +23,9 @@ function hideOptions(event) {
     }
 }
 
-// Adiciona o event listener ao document
+// Adiciona o event listener que ao clicar em qualquer parte da tela(que não seja o menu), ele fecha as opções
 document.addEventListener('click', hideOptions);
+
 
 async function logout(event) {
     if(event) {

@@ -23,7 +23,7 @@ body {
     justify-content: center;
     align-items: center;
 }
-
+/* Container Principal */
 .main-container {
     display: flex;
     width: 90%;
@@ -41,7 +41,7 @@ body {
     display: flex;
     flex-direction: column;
 }
-
+/* Formulários de Autenticação */
 .auth-forms {
     flex: 1;
     background-color: #fff;
@@ -71,7 +71,7 @@ h2 {
     color: #333;
     text-align: center;
 }
-
+/* Vídeo do jogo */
 .video-placeholder {
     flex: 1;
     background-color: #000;

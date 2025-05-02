@@ -45,7 +45,7 @@ body {
 
 }
 
-
+/*Header */
 header {
 
     display: flex;
@@ -117,7 +117,7 @@ header h1 {
   transform: translateX(3px);
 }
 
-
+/*Conteudo principal*/
 .content {
 
     display: flex;
@@ -147,7 +147,7 @@ header h1 {
 
 }
 
-
+/*Painel de informações*/
 .infos {
 
     width: 100%;
@@ -180,7 +180,7 @@ header h1 {
 
 }
 
-
+/*Painel de configurações*/
 .settings {
 
     width: 100%;
@@ -624,7 +624,7 @@ input[type="checkbox"] {
   font-size: 0.9rem;
 }
 
-
+/*Rodapé*/
 .footer {
 
     background-color: var(--primary-color);
@@ -641,7 +641,7 @@ input[type="checkbox"] {
 
 }
 
-
+/*Responsividade*/
 @media (max-width: 768px) {
   .modal {
       width: 95%;
