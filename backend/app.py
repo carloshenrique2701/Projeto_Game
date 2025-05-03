@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 import mysql.connector
-from mysql.connector import Error
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -244,54 +243,6 @@ def perfil_usuario():
         
     except Exception as e:
         print(f"Erro ao buscar perfil: {str(e)}")
-        return jsonify({'message': 'Erro no servidor'}), 500
-    finally:
-        if 'conexao' in locals() and conexao.is_connected():
-            cursor.close()
-            conexao.close()
-
-@app.route('/alterar-apelido', methods=['POST'])
-def alterar_apelido():
-    try:
-        dados = request.get_json()
-        usuario_id = dados['usuario_id']
-        novo_apelido = dados['novo_apelido'].strip()
-        
-        if not novo_apelido:
-            return jsonify({'success': False, 'message': 'Apelido não pode ser vazio'}), 400
-
-        conexao = mysql.connector.connect(**db_config)
-        cursor = conexao.cursor()
-        
-        # Verifica se o novo apelido já existe
-        cursor.execute("""
-            SELECT id_jogador FROM Jogador 
-            WHERE apelido = %s AND id_usuario != %s
-        """, (novo_apelido, int(usuario_id)))
-        
-        if cursor.fetchone():
-            return jsonify({
-                'success': False,
-                'message': 'Este apelido já está em uso por outro jogador'
-            }), 400
-        
-        # Atualiza o apelido
-        cursor.execute("""
-            UPDATE Jogador SET apelido = %s 
-            WHERE id_usuario = %s
-        """, (novo_apelido, int(usuario_id)))
-        
-        conexao.commit()
-        
-        return jsonify({
-            'success': True,
-            'message': 'Apelido atualizado com sucesso!',
-            'novo_apelido': novo_apelido
-        })
-        
-    except Exception as e:
-        print(f"Erro ao alterar apelido: {str(e)}")
-        conexao.rollback()
         return jsonify({'message': 'Erro no servidor'}), 500
     finally:
         if 'conexao' in locals() and conexao.is_connected():

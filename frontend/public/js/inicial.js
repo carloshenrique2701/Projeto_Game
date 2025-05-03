@@ -44,10 +44,6 @@ document.getElementById('enviar-login').addEventListener('click', async (e) => {
     }
 });
 
-/* Login com Google
-document.getElementById('google-login').addEventListener('click', () => {
-    window.location.href = '/auth/google';
-});*/
 
 // Função de registro
 document.getElementById('enviar-registro').addEventListener('click', async () => {
