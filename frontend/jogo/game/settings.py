@@ -9,7 +9,7 @@ fps = 120
 half_width, half_height = width // 2, height // 2 #pega o inteiro da divisão
 
 #configurações do player e movimentação geral
-player_pos = 50, 50 #Posição inicial do player
+player_pos = 47, 50 #Posição inicial do player
 player_angle = 0 #angulo inicial
 player_speed = 0.003 
 player_rot_speed = 0.002 #velocidade de rotação

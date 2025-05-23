@@ -190,14 +190,17 @@ class Player:
 							return
 
 	def check_puzzle_interaction(self):
-		"""Verifica interação com paredes id=5 ou 9 e gera pontos aleatórios."""
+		"""Verifica interação com paredes id=5 ou 9"""
 		x, y = int(self.x), int(self.y)
 		for i in range(x - PUZZLE_RADIUS, x + PUZZLE_RADIUS + 1):
 			for j in range(y - PUZZLE_RADIUS, y + PUZZLE_RADIUS + 1):
 				if (i, j) in self.game.map.world_map:
 					wall_id = self.game.map.world_map[(i, j)]
-					if wall_id in (5, 9):  # Verifica ambas as paredes interativas
-						event_id = f"item_{i}_{j}_{wall_id}"  # Inclui o ID da parede no evento
+					if wall_id == 9:  # Parede de vitória
+						self.game.victory.end_game()
+						return True
+					elif wall_id == 5:  # Parede de itens normais
+						event_id = f"item_{i}_{j}_{wall_id}"
 						if event_id not in self.completed_events:
 							points = random.randint(45, 120)
 							item_name = random.choice(ITEM_NAMES)

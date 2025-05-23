@@ -5,7 +5,7 @@ class Weapon(AnimatedSprite):
 
 	# Inicializa um objeto Weapon com valores padrão para o caminho da imagem, escala e tempo de animação. 
 	# Ele também configura a posição da arma, o estado de recarregamento e o valor de dano.
-	def __init__(self, game, path='resources/sprites/weapon/0.png',scale=0.4, animation_time=90):
+	def __init__(self, game, path='frontend/jogo/game/resources/sprites/weapon/0.png',scale=0.4, animation_time=90):
 		super().__init__(game=game, path=path, scale=scale, animation_time=animation_time)
 		self.images = deque(
 			[pg.transform.smoothscale(img, (self.image.get_width() * scale,

@@ -8,7 +8,7 @@ from collections import deque
 
 
 class SpriteObject:
-	def __init__(self, game, path='resources/sprites/static_sprites/boneca.png', 
+	def __init__(self, game, path='frontend/jogo/game/resources/sprites/static_sprites/boneca.png', 
 		pos=(10.5, 3.5), scale=0.2, shift=1.5):
 		self.game = game 
 
@@ -76,7 +76,7 @@ class SpriteObject:
 subclasse de SpriteObject que representa uma sprite animada em um jogo. Ela carrega uma série de imagens de um diretório e as anima em um intervalo de tempo especificado.
 """
 class AnimatedSprite(SpriteObject):
-	def __init__(self, game, path='resources/sprites/animated_sprites/green_light/0.png',
+	def __init__(self, game, path='frontend/jogo/game/resources/sprites/animated_sprites/green_light/0.png',
 			pos=(11.5, 3.5), scale=0.8, shift=0.16, animation_time=120):
 		super().__init__(game, path, pos, scale, shift)
 		self.animation_time = animation_time

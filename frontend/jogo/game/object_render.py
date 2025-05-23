@@ -10,18 +10,18 @@ class ObjectRenderer:
 		self.wall_textures = self.load_wall_textures()
 
 		#textura do ceu
-		self.sky_image = self.get_texture('resources/textures/sky.png', (width, half_height))
+		self.sky_image = self.get_texture('frontend/jogo/game/resources/textures/sky.png', (width, half_height))
 		self.sky_offset = 0 
 
 		#magem que indica que o player sofreu dano
-		self.blood_screen = self.get_texture('resources/textures/blood_screen.png', res)
+		self.blood_screen = self.get_texture('frontend/jogo/game/resources/textures/blood_screen.png', res)
 
 		#Texturas dos dígitos de sanidade / vida
 		self.digit_size = 90 
-		self.digit_images = [self.get_texture(f'resources/textures/digits/{i}.png', [self.digit_size] * 2)
+		self.digit_images = [self.get_texture(f'frontend/jogo/game/resources/textures/digits/{i}.png', [self.digit_size] * 2)
 							for i in range(11)]
 		self.digits = dict(zip(map(str, range(11)), self.digit_images))
-		self.game_over_image = self.get_texture('resources/textures/game_over.png', res)
+		self.game_over_image = self.get_texture('frontend/jogo/game/resources/textures/game_over.png', res)
 
 		#Fonte do puzzle e points
 		self.font = pg.font.SysFont('Arial', 30)
@@ -43,8 +43,8 @@ class ObjectRenderer:
 		"""Renderiza mensagens de itens no canto inferior direito."""
 		for i, msg in enumerate(self.game.player.item_messages):
 			text = self.font.render(msg['text'], True, ITEM_MESSAGE_COLOR)
-			pos = (width//2, height//2 + 100 + i * 50)  # Empilha mensagens
-			self.screen.blit(text, pos)
+			text_rect = text.get_rect(center=(width//2, height//2 + 100 + i * 50))  # Centralizado horizontalmente
+			self.screen.blit(text, text_rect)
 
 	def draw(self):
 		self.draw_background()
@@ -116,12 +116,12 @@ class ObjectRenderer:
 	#São usados numeros para referenciar as texturas nas paredes do minimap
 	def load_wall_textures(self):
 		return {
-			1: self.get_texture('resources/textures/1.png'),
-			2: self.get_texture('resources/textures/2.png'),
-			3: self.get_texture('resources/textures/3.png'),
-			4: self.get_texture('resources/textures/4.png'),
-			5: self.get_texture('resources/textures/5.png'),
-			6: self.get_texture('resources/textures/6.png'),
-			7: self.get_texture('resources/textures/7.png'),
-			9: self.get_texture('resources/textures/9.png'),
+			1: self.get_texture('frontend/jogo/game/resources/textures/1.png'),
+			2: self.get_texture('frontend/jogo/game/resources/textures/2.png'),
+			3: self.get_texture('frontend/jogo/game/resources/textures/3.png'),
+			4: self.get_texture('frontend/jogo/game/resources/textures/4.png'),
+			5: self.get_texture('frontend/jogo/game/resources/textures/5.png'),
+			6: self.get_texture('frontend/jogo/game/resources/textures/6.png'),
+			7: self.get_texture('frontend/jogo/game/resources/textures/7.png'),
+			9: self.get_texture('frontend/jogo/game/resources/textures/9.png'),
 		}

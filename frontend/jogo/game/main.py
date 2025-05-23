@@ -11,6 +11,8 @@ from sound import *
 from pathfinding import *
 from menu import MainMenu
 from player import *
+from victory import *
+from pause_menu import *
 
 
 class Game:
@@ -61,12 +63,18 @@ class Game:
 		self.weapon = Weapon(self)
 		self.sound = Sound(self)
 		self.pathfinding = PathFinding(self)
+		self.victory = Victory(self)
+		self.pause_menu = PauseMenu(self)
 
 		#Temporizador
 		self.start_time = pg.time.get_ticks()
 		self.total_paused_time = 0
 		self.pause_start_time = 0
 		self.frozen_time_text = "00:00"
+		self.draw_timer()
+
+		if self.paused:
+			self.pause_menu.draw()
 
 	#Desenha o jogo, se estiver pausado, chama a tela de pause
 	def draw(self):
@@ -76,32 +84,9 @@ class Game:
 		
 		# Sobrepõe a tela de pause se necessário
 		if self.paused:
-			self.draw_pause_screen()
+			self.pause_menu.draw() 
 
-	#Desenha a tela de pause
-	def draw_pause_screen(self):
-		# Cria uma superfície semi-transparente
-		s = pg.Surface((width, height), pg.SRCALPHA)
-		s.fill((0, 0, 0, 180))
-		self.screen.blit(s, (0, 0))
-		
-		# Texto de pause
-		font = pg.font.Font(None, 100)
-		text = font.render("PAUSED", True, (255, 255, 255))
-		text_rect = text.get_rect(center=(width//2, height//2 - 50))
-		self.screen.blit(text, text_rect)
-		
-		# Mostra o tempo congelado explicitamente
-		time_surface = self.font.render(f"Tempo: {self.frozen_time_text}", True, (255, 255, 255))
-		time_rect = time_surface.get_rect(center=(width//2, height//2 + 20))
-		self.screen.blit(time_surface, time_rect)
-		
-		# Instruções
-		font = pg.font.Font(None, 36)
-		instructions = font.render("Pressione ESC to continue", True, (200, 200, 200))
-		instructions_rect = instructions.get_rect(center=(width//2, height//2 + 50))
-		self.screen.blit(instructions, instructions_rect)
-	
+
 	#Checa os eventos que são pegos a cada 40ms
 	def check_events(self):
 		self.global_trigger = False
@@ -110,39 +95,37 @@ class Game:
 				pg.quit()
 				sys.exit()
 			elif event.type == pg.KEYDOWN:
-				if event.key == pg.K_ESCAPE:
+				if event.key == pg.K_ESCAPE and self.running:
 					self.toggle_pause()
+				elif self.paused:  # Só processa estas teclas se estiver pausado
+					self.pause_menu.handle_events(event)
 				elif event.key == INTERACTION_KEY:
 					if self.player.check_puzzle_interaction():
-						print("Item coletado!")  # Log opcional
+						print("Item coletado!")
 			elif event.type == self.global_event:
 				self.global_trigger = True
 			self.player.single_fire_event(event)
 
 	def toggle_pause(self):
+		"""Alterna entre pausado e despausado"""
 		if not self.running:
 			return
-			
-		self.paused = not self.paused 
-		pg.mouse.set_visible(self.paused)
-		pg.event.set_grab(not self.paused)
 		
-		if self.paused:
-			# Calcula o tempo REAL antes de pausar
-			current_unpaused_time = pg.time.get_ticks() - self.start_time - self.total_paused_time
-			total_seconds = current_unpaused_time // 1000
-			minutes = total_seconds // 60
-			seconds = total_seconds % 60
-			self.frozen_time_text = f"{minutes:02}:{seconds:02}"
-			
+		if not self.paused:
+			# Pausa o jogo
+			self.paused = True
+			self.frozen_time_text = self.get_elapsed_time()  # Atualiza o tempo congelado
 			self.pause_start_time = pg.time.get_ticks()
-			pg.mouse.get_rel()
+			pg.mouse.set_visible(True)
 			pg.event.set_grab(False)
 			pg.mouse.set_pos([half_width, half_height])
 		else:
+			# Despausa o jogo
+			self.paused = False
 			self.total_paused_time += pg.time.get_ticks() - self.pause_start_time
-			pg.mouse.get_rel()
+			pg.mouse.set_visible(False)
 			pg.event.set_grab(True)
+
 
 	def get_elapsed_time(self):
 		if self.paused:
@@ -157,9 +140,21 @@ class Game:
 	
 	#Desenha o timer
 	def draw_timer(self):
+		# Atualiza o tempo congelado se estiver pausado
+		if self.paused and not hasattr(self, 'last_paused_time'):
+			self.frozen_time_text = self.get_elapsed_time()
+		
 		time_text = self.frozen_time_text if self.paused else self.get_elapsed_time()
 		text_surface = self.font.render(f"Tempo: {time_text}", True, (255, 255, 255))
-		self.screen.blit(text_surface, (width - 190, 10))  # canto superior direito
+		self.screen.blit(text_surface, (width - 190, 10))
+
+	def reset_to_menu(self):
+		"""Reseta o jogo e volta para o menu principal"""
+		self.running = False
+		self.paused = False
+		self.menu = MainMenu(self)  # Recria o menu
+		pg.mouse.set_visible(True)  # Mostra o cursor
+		pg.event.set_grab(False)    # Libera o mouse
 
 
 

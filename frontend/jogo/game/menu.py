@@ -7,8 +7,8 @@ class MainMenu:
         self.game = game
 
         #Atributos de font
-        self.font = pg.font.Font('fonts/titulo.ttf', 74) #Tipo de fonte e o tamanho
-        self.small_font = pg.font.Font('fonts/resto.ttf', 36) #https://fonts.google.com/
+        self.font = pg.font.Font('frontend/jogo/game/fonts/titulo.ttf', 74) #Tipo de fonte e o tamanho
+        self.small_font = pg.font.Font('frontend/jogo/game/fonts/resto.ttf', 36) #https://fonts.google.com/
 
         #Atributos de opções
         self.selected = 0
