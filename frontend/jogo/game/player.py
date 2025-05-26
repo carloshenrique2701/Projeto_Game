@@ -72,6 +72,9 @@ class Player:
 
 	#verifica se o player pressionou o mouse para atirar
 	def single_fire_event(self, event):
+		if self.game.paused:
+			return
+
 		if event.type == pg.MOUSEBUTTONDOWN:
 			if event.button == 1 and not self.shot and not self.game.weapon.reloading:
 				self.game.sound.shotgun.play() #executa som de tiro ao atirar
@@ -142,12 +145,11 @@ class Player:
 			pg.mouse.get_rel()  # Descarta qualquer movimento durante o pause
 			return
 
-		if not self.game.paused:  # Só move a câmera se o jogo não estiver pausado
-			mx, my = pg.mouse.get_rel()
+		mx, my = pg.mouse.get_rel()
 
-			#movimento horizontal
-			self.rel = mx
-			self.angle += self.rel * mouse_sensitivity * self.game.delta_time
+		#movimento horizontal
+		self.rel = mx
+		self.angle += self.rel * mouse_sensitivity * self.game.delta_time
 	
 	
 	def add_item_message(self, message):

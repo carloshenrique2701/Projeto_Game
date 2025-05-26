@@ -9,7 +9,7 @@ fps = 120
 half_width, half_height = width // 2, height // 2 #pega o inteiro da divisão
 
 #configurações do player e movimentação geral
-player_pos = 47, 50 #Posição inicial do player
+player_pos = 2, 2 #Posição inicial do player
 player_angle = 0 #angulo inicial
 player_speed = 0.003 
 player_rot_speed = 0.002 #velocidade de rotação
@@ -57,8 +57,8 @@ ITEM_NAMES = [
     "Descrição de um louco"
 ]
 
-#cor do chao, cinza esbelto
-floor_color = (150, 150, 150)
+#cor do chao, marro esparro
+floor_color = (50, 50, 50)
 
 ##Para calculos da projeção 3d
 screen_dist = half_width / math.tan(half_fov) #tangente inversa da metade do angulo de visão para a metade da distância de tela(basicamente, serve para calcular coordenadas da projecao em relação ao player)

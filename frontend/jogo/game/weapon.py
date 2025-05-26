@@ -19,6 +19,9 @@ class Weapon(AnimatedSprite):
 
 	#Anima o tiro da arma rodando por uma sequência de imagens e atualizando o estado de recarregamento.
 	def animate_shot(self):
+		if self.game.paused: 
+			return
+		
 		if self.reloading:
 			self.game.player.shot = False 
 			if self.animation_trigger:
@@ -35,5 +38,6 @@ class Weapon(AnimatedSprite):
 
 
 	def update(self):
-		self.check_animation_time()
-		self.animate_shot()
+		if not self.game.paused:
+			self.check_animation_time()
+			self.animate_shot()

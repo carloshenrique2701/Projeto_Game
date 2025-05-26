@@ -105,7 +105,7 @@ class Game:
 			elif event.type == self.global_event:
 				self.global_trigger = True
 			self.player.single_fire_event(event)
-
+			
 	def toggle_pause(self):
 		"""Alterna entre pausado e despausado"""
 		if not self.running:
@@ -114,18 +114,24 @@ class Game:
 		if not self.paused:
 			# Pausa o jogo
 			self.paused = True
-			self.frozen_time_text = self.get_elapsed_time()  # Atualiza o tempo congelado
+			self.frozen_time_text = self.get_elapsed_time()
 			self.pause_start_time = pg.time.get_ticks()
 			pg.mouse.set_visible(True)
 			pg.event.set_grab(False)
 			pg.mouse.set_pos([half_width, half_height])
+			
+			# Reseta estados de input
+			self.player.shot = False
+			pg.mouse.get_rel()  # Limpa movimento acumulado do mouse
 		else:
 			# Despausa o jogo
 			self.paused = False
 			self.total_paused_time += pg.time.get_ticks() - self.pause_start_time
 			pg.mouse.set_visible(False)
 			pg.event.set_grab(True)
-
+			
+			# Garante que o próximo movimento do mouse não cause um salto
+			pg.mouse.get_rel()
 
 	def get_elapsed_time(self):
 		if self.paused:
@@ -152,6 +158,7 @@ class Game:
 		"""Reseta o jogo e volta para o menu principal"""
 		self.running = False
 		self.paused = False
+		self.player.points = 0
 		self.menu = MainMenu(self)  # Recria o menu
 		pg.mouse.set_visible(True)  # Mostra o cursor
 		pg.event.set_grab(False)    # Libera o mouse
