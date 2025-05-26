@@ -4,8 +4,8 @@ import pygame as pg
 #configurações do jogo
 
 #resolução da tela e frames/segundo
-res = width, height = 1300, 700
-fps = 120
+res = width, height = 800, 600
+fps = 45
 half_width, half_height = width // 2, height // 2 #pega o inteiro da divisão
 
 #configurações do player e movimentação geral

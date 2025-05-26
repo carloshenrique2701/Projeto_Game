@@ -34,7 +34,7 @@ class Weapon(AnimatedSprite):
 
 	def draw(self):
 		#adiciona a primeira sprite da arma, na sua posição.
-		self.game.screen.blit(self.images[0-1], self.weapon_pos)
+		self.game.screen.blit(self.images[0], self.weapon_pos)
 
 
 	def update(self):
