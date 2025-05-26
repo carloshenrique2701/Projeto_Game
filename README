@@ -1,0 +1,58 @@
+Projeto_Game/
+├── backend/
+    ├── backend/
+        └── database.sql
+    └── app.py
+├── frontend/
+    ├── jogo/
+        ├── css/
+            └──jogo.css
+        ├── game/
+            ├── fonts/
+            ├── resources/
+            ├── __init__.py
+            ├── map.py
+            ├── menu.py
+            ├── npc.py
+            ├── object_handle.py
+            ├── object_render.py
+            ├── pathfinding.py
+            ├── pause_menu.py
+            ├── player.py
+            ├── pybag.toml
+            ├── raycasting.py
+            ├── requirements.txt
+            ├── settings.py
+            ├── sound.py
+            ├── sprite_object.py
+            ├── victory.py
+            ├── weapon.py
+            └── web_main.py
+        ├── imgs/
+            └──perfil.png
+        ├── js/
+            ├── requisicao-Apelido.js
+            └──script.js
+        └── jogo.html
+    ├── perfil/
+        ├── css/
+            └── perfil.css
+        ├── imgs/
+            └── perfil.png
+        ├── js/
+            ├── configuracoes.js
+            └── infos.js
+        └── perfil.html
+    ├── public/
+        ├── css/
+            └── estilo.py
+        ├── js/
+            └── inicial.js
+        └── index.html
+    ├── ranking/
+        ├── css/
+            └── ranking.css
+        ├── js/
+            └── ranking.js
+        └── web_main.py
+└── README

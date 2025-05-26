@@ -5,7 +5,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app, resources={
     r"/*": {
-        "origins": ["http://127.0.0.1:5500", "http://localhost:5500"],
+        "origins": ["http://127.0.0.1:5500", "http://localhost:5500", "http://localhost:3000"],
         "supports_credentials": True
     }
 })
@@ -14,9 +14,29 @@ CORS(app, resources={
 db_config = {
     'host': 'localhost',
     'user': 'root',
-    'password': 'linux_senha',
+    'password': '',
     'database': 'projeto_game',
 }
+
+#Teste de conexão com o bd
+try:
+    test_conn = mysql.connector.connect(**db_config)
+    print(""
+    ""
+    "")
+    print("Conexão com o MySQL estabelecida com sucesso!")
+    print(""
+    ""
+    "")
+    test_conn.close()
+except Exception as e:
+    print(""
+    ""
+    "")
+    print(f"Erro ao conectar ao MySQL: {e}")
+    print(""
+    ""
+    "")
 
 #ROTAS PARA CADASTRO DO USUÁRIO + INFORMAÇÕES PARA O PERFIL
 #Rotas de login e logout

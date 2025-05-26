@@ -1,0 +1,8 @@
+[pygbag]
+title = "Sussuros do Labirinto"
+version = "1.0"
+company = "Projeto Game"
+fps = 60
+cdn = "local"
+assets = ["resources"]
+python = "3.11"

@@ -11,9 +11,9 @@ create table Usuario(
 create table Jogador(
     id_jogador int primary key not null auto_increment,
     apelido varchar(100) not null, 
-    record time,  
+    record int,  
     show_in_rank boolean,
-    id_usuario int is not null,  
+    id_usuario int not null,  
     foreign key (id_usuario) references Usuario(id_usuario) 
 );
 
