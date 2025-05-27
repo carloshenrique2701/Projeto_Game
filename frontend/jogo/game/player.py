@@ -67,8 +67,8 @@ class Player:
 		if self.health < 1:
 			self.game.object_renderer.game_over()
 			pg.display.flip()
-			pg.time.delay(1500)
-			self.game.new_game()
+			pg.time.delay(500)
+			self.game.pause_menu.return_to_menu()
 
 	#verifica se o player pressionou o mouse para atirar
 	def single_fire_event(self, event):
@@ -120,7 +120,6 @@ class Player:
 			dx += -speed_sin 
 			dy += speed_cos
 
-		print(self.x, self.y)
 
 		#função que checa a colisão com as paredes do game
 		self.check_wall_collision(dx, dy)

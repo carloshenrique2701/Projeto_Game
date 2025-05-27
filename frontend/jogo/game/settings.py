@@ -14,7 +14,7 @@ player_angle = 0 #angulo inicial
 player_speed = 0.003 
 player_rot_speed = 0.002 #velocidade de rotação
 player_size_scale = 100 #tamanho de colisão do player com as paredes(distancia de colisão)
-player_max_health = 100
+player_max_health = 150
 player_height = 0.5
 
 #configurações do mouse
