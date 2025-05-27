@@ -10,7 +10,6 @@ Projeto_Game/
         ├── game/
             ├── fonts/
             ├── resources/
-            ├── __init__.py
             ├── map.py
             ├── menu.py
             ├── npc.py
@@ -19,15 +18,12 @@ Projeto_Game/
             ├── pathfinding.py
             ├── pause_menu.py
             ├── player.py
-            ├── pybag.toml
             ├── raycasting.py
-            ├── requirements.txt
             ├── settings.py
             ├── sound.py
             ├── sprite_object.py
             ├── victory.py
-            ├── weapon.py
-            └── web_main.py
+            └── weapon.py
         ├── imgs/
             └──perfil.png
         ├── js/
