@@ -391,8 +391,6 @@ def alterar_apelido_direto():
 
 
 #Rota para a exclusão da conta
-# Adicione estas rotas no app.py
-
 @app.route('/verificar-senha', methods=['POST'])
 def verificar_senha():
     try:
