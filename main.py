@@ -157,7 +157,7 @@ class Game:
         self.running = False
         self.paused = False
         self.player.points = 0
-        self.player.health = 150
+        self.player.health = 100
         self.menu = MainMenu(self)  # Recria o menu
         pg.mouse.set_visible(True)  # Mostra o cursor
         pg.event.set_grab(False)    # Libera o mouse

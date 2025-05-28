@@ -70,10 +70,15 @@ class ObjectRenderer:
 	5- O laço repete esses passos para cada caractere na string health.
 	"""
 	def draw_player_health(self):
-		health = str(self.game.player.health)
-		for i, char in enumerate(health):
+		current_health = self.game.player.health
+		# Calcula a porcentagem da vida atual em relação à vida máxima
+		health_percentage = min(current_health / player_max_health, 1.0)  # Limita a 100% no máximo
+		displayed_health = int(health_percentage * 100)  # Converte para valor entre 0-100
+		
+		health_str = str(displayed_health)
+		for i, char in enumerate(health_str):
 			self.screen.blit(self.digits[char], (i * self.digit_size, 0)) 
-		self.screen.blit(self.digits['10'], ((i + 1) * self.digit_size, 0)) 
+		self.screen.blit(self.digits['10'], ((i + 1) * self.digit_size, 0))  # Mostra o símbolo de porcentagem 
 
 	def player_damage(self):
 		#sobrepõe a imagem do dano na tela se o player sofrer dano

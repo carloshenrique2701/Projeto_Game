@@ -3,27 +3,11 @@ Projeto_Game/
     ├── backend/
         └── database.sql
     └── app.py
+
 ├── frontend/
     ├── jogo/
         ├── css/
             └──jogo.css
-        ├── game/
-            ├── fonts/
-            ├── resources/
-            ├── map.py
-            ├── menu.py
-            ├── npc.py
-            ├── object_handle.py
-            ├── object_render.py
-            ├── pathfinding.py
-            ├── pause_menu.py
-            ├── player.py
-            ├── raycasting.py
-            ├── settings.py
-            ├── sound.py
-            ├── sprite_object.py
-            ├── victory.py
-            └── weapon.py
         ├── imgs/
             └──perfil.png
         ├── js/
@@ -51,4 +35,22 @@ Projeto_Game/
         ├── js/
             └── ranking.js
         └── index.html
+
+├── fonts/
+├── resources/
+├── main.py
+├── map.py
+├── menu.py
+├── npc.py
+├── object_handle.py
+├── object_render.py
+├── pathfinding.py
+├── pause_menu.py
+├── player.py
+├── raycasting.py
+├── settings.py
+├── sound.py
+├── sprite_object.py
+├── victory.py
+├── weapon.py
 └── README

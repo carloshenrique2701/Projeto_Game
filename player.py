@@ -67,7 +67,7 @@ class Player:
 		if self.health < 1:
 			self.game.object_renderer.game_over()
 			pg.display.flip()
-			pg.time.delay(500)
+			pg.time.delay(1500)
 			self.game.pause_menu.return_to_menu()
 
 	#verifica se o player pressionou o mouse para atirar

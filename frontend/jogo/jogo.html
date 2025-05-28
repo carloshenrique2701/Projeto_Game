@@ -5,30 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo - Projeto Game</title>
     <link rel="stylesheet" href="css/jogo.css">
-    <style>
-        .game-container {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            border-radius: 12px;
-        }
-        #game-canvas {
-            width: 100%;
-            height: 600px;
-            background: #000;
-            border-radius: 12px;
-        }
-        #loader {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 20px;
-            border-radius: 12px;
-        }
-    </style>
+
 </head>
 <body>
     <div id="game-container" style="display: block;">
@@ -46,10 +23,7 @@
         </div>
 
         <div class="content">
-            <div class="game-container">
-                <canvas id="game-canvas"></canvas>
-                <div id="loader">Carregando jogo... (Pode levar alguns segundos)</div>
-            </div>
+            <div class="game-container"></div>
             <div class="tutorial"></div>
         </div>
     </div>
@@ -65,30 +39,33 @@
         <button onclick="registrarApelido()">Confirmar</button>
     </div>
 
+        <!-- Container do jogo (coloque onde quiser) -->
+    <div id="game-container" style="width: 800px; height: 600px; margin: 0 auto;"></div>
+
+    <!-- Scripts do pygbag (adicione antes do </body>) -->
+    <script src="caminho/para/pygbag.js"></script>
+    <script src="caminho/para/meu_jogo.js"></script>
+    <script>
+    // Configuração do jogo
+    window.addEventListener('load', () => {
+        pygameweb.app.runner.runApp({
+        // Container personalizado
+        canvas: document.getElementById("game-container"),
+        // Arquivos do jogo
+        data: "caminho/para/meu_jogo.data",
+        wasm: "caminho/para/meu_jogo.wasm",
+        // Outras configurações
+        width: 800,
+        height: 600,
+        fullscreen: false,
+        });
+    });
+    </script>
+
     <script src="js/script.js"></script>
     <script src="js/requisicao-Apelido.js"></script>
 
     
     
-    <script>
-        // Configuração do Pygbag
-        const loader = document.getElementById('loader');
-        const gameCanvas = document.getElementById('game-canvas');
-        
-        // Esconde o loader quando o jogo começar
-        window.addEventListener('pygame-ready', () => {
-            loader.style.display = 'none';
-        });
-        
-        // Configurações do Pygbag
-        window.pygame = {
-            canvas: gameCanvas,
-            onProgress: (progress) => {
-                loader.textContent = `Carregando... ${Math.round(progress * 100)}%`;
-            },
-            preRun: [],
-            postRun: [],
-        };
-    </script>
 </body>
 </html>
