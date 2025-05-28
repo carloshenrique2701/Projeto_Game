@@ -31,7 +31,7 @@ class Victory:
         
         # Mostrar tela de vitória
         self.show_victory_screen()
-        
+
         # Voltar ao menu principal
         self.game.reset_to_menu()
 

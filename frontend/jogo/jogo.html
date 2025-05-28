@@ -505,6 +505,27 @@ config = {
             window.frames["iframe"].location = url;
         }
 
+        // Funções globais para comunicação com o backend
+        window.gameAPI = {
+            enviarPontuacao: async function(pontos, email) {
+                try {
+                    const response = await fetch('http://localhost:5000/atualizar-record', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, pontos })
+                    });
+                    return await response.json();
+                } catch (error) {
+                    console.error('Erro ao enviar pontuação:', error);
+                    return { success: false };
+                }
+            },
+            
+            receberDados: function(callback) {
+                window.pythonCallback = callback;
+            }
+        };
+
     </script>
     <script src="js/script.js"></script>
     <script src="js/requisicao-Apelido.js"></script>

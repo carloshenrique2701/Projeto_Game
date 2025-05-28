@@ -38,6 +38,8 @@ except Exception as e:
     ""
     "")
 
+G_email = ''
+
 #ROTAS PARA CADASTRO DO USUÁRIO + INFORMAÇÕES PARA O PERFIL
 #Rotas de login e logout
 @app.route('/cadastrar', methods=['POST'])
@@ -83,6 +85,10 @@ def login_usuario():
         dados = request.get_json()
         email = dados['email']
         senha = dados['senha']
+
+        global G_email 
+
+        G_email = email
 
         conexao = mysql.connector.connect(**db_config)
         cursor = conexao.cursor(dictionary=True)
@@ -539,6 +545,7 @@ def obter_ranking():
         if 'conexao' in locals() and conexao.is_connected():
             cursor.close()
             conexao.close()
+
 
 
 if __name__ == '__main__':
