@@ -4,6 +4,7 @@ import math
 from npc import * 
 from object_handler import * 
 import random
+import asyncio
 
 class Player:
 
@@ -119,6 +120,8 @@ class Player:
 			#vai para direita
 			dx += -speed_sin 
 			dy += speed_cos
+
+		print(self.x, self.y)
 
 
 		#função que checa a colisão com as paredes do game

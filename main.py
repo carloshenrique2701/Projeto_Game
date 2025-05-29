@@ -84,6 +84,8 @@ class Game:
         # Sobrepõe a tela de pause se necessário
         if self.paused:
             self.pause_menu.draw() 
+        elif hasattr(self, 'victory') and self.victory.show_victory:
+            self.victory.draw()
 
     #Checa os eventos que são pegos a cada 40ms
     def check_events(self):
@@ -168,6 +170,8 @@ class Game:
         self.raycasting.update()
         self.object_handler.update()
         self.weapon.update()
+        if hasattr(self, 'victory'):
+            self.victory.update()
 
     #Principal loop do jogo - ASSÍNCRONO
     async def run(self): 

@@ -438,8 +438,23 @@ config = {
     <div id="pyconsole">
         <div id="terminal" tabIndex=1 align="left"></div>
     </div>
+    <script>
+            // Configuração para comunicação Python-JavaScript
+            window.addEventListener('load', () => {
+                window.pythonDataHandler = (data) => {
+                    if (data.type === 'victory') {
+                        fetch('/atualizar-record', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify(data.payload)
+                        });
+                    }
+                };
+            });
+        </script>
 
     <script type="application/javascript">
+        
 
         async function custom_onload(debug_hidden) {
             // this is called before anything python is loaded
@@ -529,6 +544,7 @@ config = {
     </script>
     <script src="js/script.js"></script>
     <script src="js/requisicao-Apelido.js"></script>
+    <script src="js/pontuacao.js"></script>
 
     
     

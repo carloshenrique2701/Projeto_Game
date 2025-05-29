@@ -546,7 +546,62 @@ def obter_ranking():
             cursor.close()
             conexao.close()
 
+# Adicione esta nova rota para atualização de record
+@app.route('/atualizar-record', methods=['POST'])
+def atualizar_record():
+    try:
+        dados = request.get_json()
+        email = dados['email']
+        pontos = int(dados['pontos'])
 
-
+        conexao = mysql.connector.connect(**db_config)
+        cursor = conexao.cursor(dictionary=True)
+        
+        # Verifica o record atual
+        cursor.execute("""
+            SELECT j.record FROM Jogador j
+            JOIN Usuario u ON j.id_usuario = u.id_usuario
+            WHERE u.email = %s
+        """, (email,))
+        
+        resultado = cursor.fetchone()
+        
+        if not resultado:
+            return jsonify({'success': False, 'message': 'Jogador não encontrado'}), 404
+        
+        record_atual = resultado['record'] or 0
+        
+        # Atualiza apenas se a nova pontuação for maior
+        if pontos > record_atual:
+            cursor.execute("""
+                UPDATE Jogador j
+                JOIN Usuario u ON j.id_usuario = u.id_usuario
+                SET j.record = %s
+                WHERE u.email = %s
+            """, (pontos, email))
+            conexao.commit()
+            return jsonify({
+                'success': True,
+                'atualizado': True,
+                'novo_record': pontos,
+                'record_anterior': record_atual
+            })
+        
+        return jsonify({
+            'success': True,
+            'atualizado': False,
+            'motivo': 'Pontuação menor que o record atual',
+            'record_atual': record_atual,
+            'pontuacao_enviada': pontos
+        })
+        
+    except Exception as e:
+        print(f"Erro ao atualizar record: {str(e)}")
+        return jsonify({'success': False, 'message': str(e)}), 500
+    finally:
+        if 'conexao' in locals() and conexao.is_connected():
+            cursor.close()
+            conexao.close()
+            
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')
