@@ -19,7 +19,9 @@ class ObjectHandler:
         # spawn npc
         self.reward_NPC = False
         self.npc_positions = {}
-        self.enemies = 0  # npc count
+        self.enemies = game.enemies if hasattr(game, 'enemies') else 100  # npc count
+        print(f"\n \n \nenemies: {self.enemies} \n\n\n")
+        print(f"\n \n \health: {self.game.player.health} \n\n\n")
         self.npc_types = [SoldierNPC, CacoDemonNPC, CyberDemonNPC]
         self.weights = [70, 20, 10]
         self.restricted_area = {(i, j) for i in range(10) for j in range(10)}

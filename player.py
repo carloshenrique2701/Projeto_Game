@@ -17,8 +17,12 @@ class Player:
 		self.shot = False 
 
 		#vida do player - 
-		self.health = player_max_health 
-		self.health_recovery_delay = 700 
+		self.max_health = getattr(game, 'player_max_health', player_max_health)
+		self.health = self.max_health
+		if  self.max_health >= 250:
+			self.health_recovery_delay = 1200 
+		else:
+			self.health_recovery_delay = 700
 		self.time_prev = pg.time.get_ticks() #usado para calcular o atraso de recuperação de saúde
 	
 		#movimento do mouse
@@ -45,7 +49,7 @@ class Player:
 	"""
 	#
 	def recover_health(self):
-		if self.check_health_recovery_delay() and self.health < player_max_health:
+		if self.check_health_recovery_delay() and self.health < self.max_health:
 			self.health += 1 
 	#
 	def check_health_recovery_delay(self):
@@ -120,8 +124,6 @@ class Player:
 			#vai para direita
 			dx += -speed_sin 
 			dy += speed_cos
-
-		print(self.x, self.y)
 
 
 		#função que checa a colisão com as paredes do game

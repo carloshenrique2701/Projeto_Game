@@ -4,17 +4,17 @@ import pygame as pg
 #configurações do jogo
 
 #resolução da tela e frames/segundo
-res = width, height = 1200, 700
+res = width, height = 1000, 600
 fps = 45
 half_width, half_height = width // 2, height // 2 #pega o inteiro da divisão
 
 #configurações do player e movimentação geral
-player_pos = 48.09362142244453, 50.54043489796187 #Posição inicial do player
+player_pos = 2, 2 #48.09362142244453, 50.54043489796187 # --> Posição inicial do player
 player_angle = 0 #angulo inicial
 player_speed = 0.003 
 player_rot_speed = 0.001 #velocidade de rotação
 player_size_scale = 100 #tamanho de colisão do player com as paredes(distancia de colisão)
-player_max_health = 150
+player_max_health = 100
 player_height = 0.5
 
 #configurações do mouse

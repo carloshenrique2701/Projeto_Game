@@ -38,6 +38,11 @@ class Game:
         self.running = False
         self.paused = False
 
+        self.player_max_health = player_max_health
+        self.enemies = 200
+
+        self.difficulty_settings = None  
+
         # Carrega o menu primeiro
         self.menu = MainMenu(self)
 
@@ -45,27 +50,35 @@ class Game:
 
     def start_game(self):
         """Chamado quando o jogador seleciona 'Iniciar Jogo'"""
+        # Aplica as configurações de dificuldade ANTES de criar os objetos
+        if self.difficulty_settings:
+            self.player_max_health = self.difficulty_settings['health']
+            self.enemies = self.difficulty_settings['enemies']
+        
         self.new_game()
         self.running = True
-
-        # Agora trava o mouse para gameplay e deixa ele invisível
+        
+        # Configurações do mouse
         pg.mouse.set_visible(False)
-        pg.event.set_grab(True)  
-    
+        pg.event.set_grab(True)
+        
     #iniciando o jogo e declarando as instancias
     def new_game(self):
         self.map = Map(self)
         self.player = Player(self)
         self.object_renderer = ObjectRenderer(self)
         self.raycasting = RayCasting(self)
+        
+        # Cria o object_handler com o número correto de inimigos
         self.object_handler = ObjectHandler(self)
+        
         self.weapon = Weapon(self)
         self.sound = Sound(self)
         self.pathfinding = PathFinding(self)
         self.victory = Victory(self)
         self.pause_menu = PauseMenu(self)
 
-        #Temporizador
+        # Temporizador
         self.start_time = pg.time.get_ticks()
         self.total_paused_time = 0
         self.pause_start_time = 0
