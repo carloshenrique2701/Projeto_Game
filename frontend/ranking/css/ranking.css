@@ -1,0 +1,282 @@
+:root {
+    --text-color: #f0f0f0;
+    --background-dark: #060433;
+    --primary-color: #3a3956;
+    --secondary-color: #42415a;
+    --hover-color: #4e4d6d;
+    --accent-color: #6c5ce7;
+    --border-radius: 14px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-dark);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+}
+
+/* Container Principal */
+#perfil-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    background-color: #1a193e;
+    box-shadow: var(--box-shadow);
+    flex-grow: 1;
+}
+
+/* Cabeçalho */
+header {
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+    position: relative;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* Botão Voltar */
+.back-button {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-decoration: none;
+    z-index: 10;
+}
+
+.back-button button {
+    display: flex;
+    height: 3em;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border-radius: var(--border-radius);
+    letter-spacing: 1px;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    box-shadow: var(--box-shadow);
+    padding: 0 15px;
+}
+
+.back-button button:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+}
+
+.back-button button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.back-button button > svg {
+    margin-right: 8px;
+    transition: var(--transition);
+    fill: var(--text-color);
+}
+
+.back-button button:hover > svg {
+    transform: translateX(3px);
+}
+
+/* Conteúdo Principal */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    margin-bottom: 30px;
+    gap: 30px;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Tabela de Ranking*/
+.ranking-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 20px 0;
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+
+.ranking-table th {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-size: 1.1rem;
+}
+
+.ranking-table th:first-child {
+    border-top-left-radius: var(--border-radius);
+}
+
+.ranking-table th:last-child {
+    border-top-right-radius: var(--border-radius);
+}
+
+.ranking-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ranking-table tr:last-child td {
+    border-bottom: none;
+}
+
+.ranking-table tr:hover {
+    background-color: var(--hover-color);
+}
+
+/* Estilo para os top 3 */
+.ranking-table tr.top-1 {
+    background-color: rgba(255, 215, 0, 0.1);
+}
+
+.ranking-table tr.top-1 td:first-child {
+    position: relative;
+}
+
+.ranking-table tr.top-1 td:first-child::before {
+    content: "🥇";
+    margin-right: 8px;
+}
+
+.ranking-table tr.top-2 {
+    background-color: rgba(192, 192, 192, 0.1);
+}
+
+.ranking-table tr.top-2 td:first-child::before {
+    content: "🥈";
+    margin-right: 8px;
+}
+
+.ranking-table tr.top-3 {
+    background-color: rgba(205, 127, 50, 0.1);
+}
+
+.ranking-table tr.top-3 td:first-child::before {
+    content: "🥉";
+    margin-right: 8px;
+}
+
+/* Mensagens de estado */
+.carregando, .sem-dados, .erro-carregamento {
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Rodapé */
+.footer {
+    background-color: var(--primary-color);
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.footer p {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin: 0;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #perfil-container {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .content {
+        padding: 20px;
+    }
+    
+    .ranking-table th, 
+    .ranking-table td {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .back-button {
+        position: static;
+        transform: none;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    
+    .back-button button {
+        width: auto;
+        margin: 0 auto;
+    }
+    
+    header {
+        flex-direction: column;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ranking-table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .ranking-table th {
+        font-size: 0.9rem;
+    }
+    
+    .ranking-table th:nth-child(2),
+    .ranking-table td:nth-child(2) {
+        max-width: 120px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

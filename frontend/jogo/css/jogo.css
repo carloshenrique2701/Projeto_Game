@@ -1,0 +1,294 @@
+:root { /*Variáveis CSS para estilização*/
+    --text-color: #f0f0f0;
+    --background-dark: #060433;
+    --primary-color: #3a3956;
+    --secondary-color: #42415a;
+    --hover-color: #4e4d6d;
+    --accent-color: #6c5ce7;
+    --border-radius: 14px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-dark);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+}
+
+#game-container {
+    width: 1800px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    background-color: #1a193e;
+    box-shadow: var(--box-shadow);
+    flex-grow: 1;
+}
+
+
+/* Header Styles */
+header {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+    position: relative;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+header p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    padding: 10px 20px;
+    margin: 0;
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+header p:hover {
+    background-color: var(--hover-color);
+}
+
+header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+header img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(108, 92, 231, 0.7);
+}
+
+
+/* Options Menu */
+.options {
+    position: absolute;
+    right: 20px;
+    top: 30px;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 250px;
+    padding: 15px 0;
+    z-index: 1000;
+    display: none;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.options ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.options li {
+    padding: 12px 20px;
+    transition: var(--transition);
+    position: relative;
+    cursor: pointer;
+}
+
+.options li:hover {
+    background-color: var(--hover-color);
+}
+
+.options li::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 5px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.options li:hover::before {
+    opacity: 1;
+}
+
+.options a {
+    text-decoration: none;
+    color: var(--text-color);
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Content Area */
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+}
+
+.tutorial, #pygame-container {
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    min-height: 500px;
+}
+
+/* Estilo para a div apelido - igual aos outros modais */
+.apelido {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--box-shadow);
+    z-index: 1001;
+    width: 100%;
+    max-width: 500px;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+.apelido h1 {
+    color: var(--accent-color);
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.apelido input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: var(--border-radius);
+    border: none;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.apelido button {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.apelido button:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+/* Adicionando o overlay quando o modal estiver aberto */
+body.modal-open-apelido::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: var(--primary-color);
+    text-align: center;
+    padding: 20px;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    margin-top: auto;
+}
+
+.footer p {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin: 0;
+}
+
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .options {
+        width: 180px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    header p {
+        font-size: 1rem;
+        padding: 8px 15px;
+    }
+    
+    header img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .content {
+        padding: 15px;
+    }
+    
+    .tutorial, .game {
+        padding: 20px;
+    }
+}

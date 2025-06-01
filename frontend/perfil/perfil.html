@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sussuros do labirinto - Perfil</title>
+    <link rel="stylesheet" href="css/perfil.css">
+
+</head>
+<body>
+    <div id="perfil-container" style="display: block;">
+        <header>
+            <a href="../jogo/jogo.html" class="back-button">
+                <button>
+                    <svg height="16" width="16" version="1.1" viewBox="0 0 1024 1024"><path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path></svg>
+                    <span>Voltar</span>
+                </button>
+            </a>
+            <h1 align="center">Perfil</h1>
+
+        </header>
+
+        <div class="content">
+
+            <img src="imgs/perfil.png" alt="imgem de perfil">
+    
+
+            <div class="infos">
+
+                <h1 id="apelido">Usuário1209437564</h1>
+
+                <p>Nome do Usuário: <span id="nome">Usuário1209437564</span></p>
+
+                <p>Email: <span id="email">Usuário1209437564@gmail.com</span></p>
+
+            </div>
+
+            <div class="settings">
+
+                <h1>Configurações</h1>
+
+                <h3 onclick="openDiv(1)">Alterar senha</h3>
+
+                <h3 onclick="openDiv(2)">Alterar apelido</h3>
+
+                <h3 onclick="openDiv(3)">Desativar conta</h3>
+
+                <h3>
+                    <label>
+                        Deseja que seu nome apareça na tabela de recordes?
+                        <!-- From Uiverse.io by Shoh2008 --> 
+                        <div class="checkbox-wrapper-12">
+                            <div class="cbx">
+                                <input checked="" type="checkbox" id="cbx-12" onchange="atualizarPreferenciaTabela(this.checked)">
+                                <label for="cbx-12"></label>
+                                <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+                                    <path d="M2 8.36364L6.23077 12L13 2"></path>
+                                </svg>
+                            </div>
+                            
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <filter id="goo-12">
+                                    <feGaussianBlur result="blur" stdDeviation="4" in="SourceGraphic"></feGaussianBlur>
+                                    <feColorMatrix result="goo-12" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" mode="matrix" in="blur"></feColorMatrix>
+                                    <feBlend in2="goo-12" in="SourceGraphic"></feBlend>
+                                </filter>
+                            </defs>
+                            </svg>
+                        </div>
+                    </label>
+                </h3>
+
+            </div>
+
+            <div id="alterSenha" style="display: none;">
+                <div class="verificacaoEmail">
+                    <h1>Digite o seu email atual:</h1>
+                    <input type="text" id="verificacaoEmail">
+                    <button onclick="verificarEmail()">Continuar</button>
+                </div>
+                
+                <div class="verificarSenha" style="display: none;">
+                    <h1>Digite sua nova senha:</h1>
+                    <input type="password" id="verificarSenha">
+                    <button onclick="alterarSenha()">Alterar Senha</button>
+                </div>
+            </div>
+            
+            <div id="alterApelidoDiv" style="display: none;">
+                <h1>Digite o novo apelido</h1>
+                <input type="text" id="alterApelido">
+                <button onclick="alterarApelido()">Confirmar</button>
+            </div>
+            
+            <div id="desativarContaDiv" style="display: none;">
+                <div class="confirmacao">
+                    <div class="conf1">
+                        <h1>Deseja mesmo desativar sua conta?</h1>
+                        <span>Lembre-se que esse procedimento <strong>NÃO TERÁ VOLTA!</strong> Certifique-se de tomar a melhor escolha.</span>
+                        <button onclick="document.querySelector('.conf1').style.display='none'; document.querySelector('.conf2').style.display='flex';">Eu entendo</button>
+                    </div>
+                    
+                    <div class="conf2" style="display: none;">
+                        <h1>Digite sua senha atual:</h1>
+                        <input type="password" id="senhaDesativacao">
+                        <button onclick="verificarSenhaDesativacao()">Continuar</button>
+                    </div>
+            
+                    <div class="conf3" style="display: none;">
+                        <h2>Você está prestes a deletar sua conta permanentemente</h2>
+                        <button onclick="desativarConta()">Confirmar exclusão da conta</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <div class="footer">
+            <p>&copy; 2025 Projeto Game. Todos os direitos reservados.</p>
+    </div>
+
+    <script src="js/infos.js"></script>
+    <script src="js/configuracoes.js"></script>
+</body>
+</html>
