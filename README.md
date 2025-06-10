@@ -2,6 +2,7 @@
 
 **Descrição breve**: Um jogo 3D estilo Doom/Wolfenstein com raycasting, integrado a um sistema web com autenticação, ranking e perfil de usuário.
 
+
 ## 📌 Índice
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
 - [Funcionalidades](#-funcionalidades)
@@ -11,6 +12,8 @@
 - [Backend](#-backend)
 - [Jogo (Frontend)](#-jogo-frontend)
 - [Créditos](#-Créditos)
+
+
 
 ## 🛠 Tecnologias Utilizadas
 - **Frontend (Jogo)**: 
@@ -27,6 +30,7 @@
 
 - **Outros**:
   - OS/Sys para manipulação de arquivos
+
 
 ## 🎯 Funcionalidades
 ### 🔐 Autenticação
@@ -146,7 +150,8 @@
 
 
 ## 📂 Estrutura do Projeto
-.
+```
+Projeto_Game
 ├── backend
 │   ├── app.py
 │   └── database
@@ -349,7 +354,7 @@
 │   └── weapon.py
 ├── README
 └── requirements.txt
-
+```
 
 ## 🧠 Desafios Técnicos
 - Otimização do raycasting para evitar lag em mapas grandes.
