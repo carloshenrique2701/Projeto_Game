@@ -6,11 +6,10 @@
 ## 📌 Índice
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
 - [Funcionalidades](#-funcionalidades)
+- [Jogo](#-Jogo)
 - [Como Executar](#-como-executar)
 - [Estrutura do Projeto](#-estrutura-do-projeto)
-- [Configuração do Banco de Dados](#-configuração-do-banco-de-dados)
-- [Backend](#-backend)
-- [Jogo (Frontend)](#-jogo-frontend)
+- [Desafios Técnicos](#-Desafios-Técnicos)
 - [Créditos](#-Créditos)
 
 
