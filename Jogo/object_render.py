@@ -8,10 +8,6 @@ class ObjectRenderer:
 		self.screen = game.screen
 		self.wall_textures = self.load_wall_textures()
 
-		#textura do ceu
-		self.sky_image = self.get_texture('resources/textures/sky.png', (width, half_height))
-		self.sky_offset = 0 
-
 		#magem que indica que o player sofreu dano
 		self.blood_screen = self.get_texture('resources/textures/blood_screen.png', res)
 
@@ -91,9 +87,10 @@ class ObjectRenderer:
 
 
 	def draw_background(self):
-		self.sky_offset = (self.sky_offset + 4.5 * self.game.player.rel) % width
-		self.screen.blit(self.sky_image, (-self.sky_offset, 0))
-		self.screen.blit(self.sky_image, (-self.sky_offset + width, 0))
+		# Desenha o céu preto
+		pg.draw.rect(self.screen, (0, 0, 0), (0, 0, width, half_height))
+
+		#Desenha o chão
 		pg.draw.rect(self.screen, floor_color, (0, half_height, width, height))
 
 
@@ -127,9 +124,6 @@ class ObjectRenderer:
 	def load_wall_textures(self):
 		return {
 			1: self.get_texture('resources/textures/1.png'),
-			2: self.get_texture('resources/textures/2.png'),
-			3: self.get_texture('resources/textures/3.png'),
-			4: self.get_texture('resources/textures/4.png'),
 			5: self.get_texture('resources/textures/5.png'),
 			6: self.get_texture('resources/textures/6.png'),
 			7: self.get_texture('resources/textures/7.png'),

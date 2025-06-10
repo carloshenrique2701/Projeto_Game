@@ -4,7 +4,6 @@ import math
 from npc import * 
 from object_handler import * 
 import random
-import asyncio
 
 class Player:
 

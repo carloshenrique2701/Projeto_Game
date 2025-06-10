@@ -13,13 +13,12 @@ class ObjectHandler:
         self.anim_sprite_path = 'resources/sprites/animated_sprites/'
         
         add_sprite = self.add_sprite
-        add_npc = self.add_npc
         
 
         # spawn npc
         self.reward_NPC = False
         self.npc_positions = {}
-        self.enemies = game.enemies if hasattr(game, 'enemies') else 100  # npc count
+        self.enemies = game.enemies if hasattr(game, 'enemies') else 100 
         print(f"\n \n \nenemies: {self.enemies} \n\n\n")
         print(f"\n \n \nhealth: {self.game.player.health} \n\n\n")
         self.npc_types = [SoldierNPC, CacoDemonNPC, CyberDemonNPC]
@@ -45,7 +44,7 @@ class ObjectHandler:
                 self.add_npc(npc(self.game, pos=(x + 0.5, y + 0.5)))
 
     def check_NPC(self):
-        #Caso todos os inimigos sejam matados, o jogador ganha 5000 pontos
+        #Caso todos os inimigos sejam mortos, o jogador ganha 5000 pontos
         if not len(self.npc_positions):
             self.game.player.points += 5000
             self.game.player.add_item_message(f"Parabéns, você matou todos os inimigos + 5000 pontos")

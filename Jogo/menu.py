@@ -7,9 +7,9 @@ class MainMenu:
         self.game = game
         
         # Fontes
-        self.font = pg.font.Font('fonts/titulo.ttf', 74)
-        self.small_font = pg.font.Font('fonts/resto.ttf', 36)
-        self.tips_font = pg.font.Font('fonts/resto.ttf', 20)
+        self.font = pg.font.Font('resources/fonts/titulo.ttf', 74)
+        self.small_font = pg.font.Font('resources/fonts/resto.ttf', 36)
+        self.tips_font = pg.font.Font('resources/fonts/resto.ttf', 20)
         
         # Estados do menu
         self.state = "selecting_difficulty" # "selecting_difficulty", "confirming_start"

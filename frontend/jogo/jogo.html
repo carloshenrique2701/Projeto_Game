@@ -288,8 +288,8 @@ config = {
             border: 0px none;
             background-color: transparent;
             display: block;
-            width: 80%;
-            height: 80%;
+            width: 70%;
+            height: 70%;
             margin: 0;
             padding: 0;
             position: relative;
@@ -480,6 +480,10 @@ config = {
                         e.preventDefault();
                 }
             }, false);
+
+            window.addEventListener("wheel", function(e) {
+                e.stopPropagation(); // Garante que nenhum outro script bloqueie o scroll do mouse
+            }, { passive: true });
         }
 
         function debug() {

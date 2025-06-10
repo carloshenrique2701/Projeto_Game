@@ -14,29 +14,17 @@ CORS(app, resources={
 db_config = {
     'host': 'localhost',
     'user': 'root',
-    'password': '',
+    'password': 'linux_senha',
     'database': 'projeto_game',
 }
 
 #Teste de conexão com o bd
 try:
     test_conn = mysql.connector.connect(**db_config)
-    print(""
-    ""
-    "")
-    print("Conexão com o MySQL estabelecida com sucesso!")
-    print(""
-    ""
-    "")
+    print("\n\n\nConexão com o MySQL estabelecida com sucesso!\n\n\n")
     test_conn.close()
 except Exception as e:
-    print(""
-    ""
-    "")
-    print(f"Erro ao conectar ao MySQL: {e}")
-    print(""
-    ""
-    "")
+    print(f"\n\n\nErro ao conectar ao MySQL: {e}\n\n\n\n")
 
 G_email = ''
 
@@ -513,7 +501,7 @@ def obter_ranking():
             WHERE show_in_rank = TRUE 
             ORDER BY 
                 CASE WHEN record IS NULL THEN 1 ELSE 0 END,  -- Jogadores sem record vêm depois
-                record ASC,  -- Menor tempo primeiro
+                record desc,  
                 apelido ASC  -- Em caso de empate, ordena por apelido
         """)
         

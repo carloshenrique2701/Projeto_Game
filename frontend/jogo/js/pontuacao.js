@@ -18,11 +18,7 @@ function monitorarTerminalPython() {
                     pontuacaoJogador = parseInt(match[1]);
                     console.log('Pontuação capturada:', pontuacaoJogador);
                     
-                    // Mostra a pontuação na página para debug
-                    document.getElementById('debug-output').textContent = 
-                        `Pontuação capturada: ${pontuacaoJogador}`;
-                    
-                    // Envia para o backend (opcional)
+                    // Envia para o backend
                     enviarPontuacaoParaBackend(pontuacaoJogador);
                 }
             });
@@ -35,17 +31,25 @@ function monitorarTerminalPython() {
         subtree: true
     });
 }
+// Inicia o monitoramento quando a página estiver carregada
+document.addEventListener('DOMContentLoaded', () => {
+    // Espera o WASM carregar
+    const checkReady = setInterval(() => {
+        if (document.getElementById('terminal')) {
+            clearInterval(checkReady);
+            monitorarTerminalPython();
+        }
+    }, 500);
+});
 
 // Função para enviar a pontuação para o backend
 function enviarPontuacaoParaBackend(pontos) {
     console.log('Iniciando envio da pontuação para o backend...');
     
-    // Obtém o usuário do localStorage (mesmo método usado no seu código)
+    // Obtém o usuário do localStorage 
     const usuario = JSON.parse(localStorage.getItem('usuario'));
     if (!usuario || !usuario.id) {
         console.error('Erro: Usuário não está logado ou ID não disponível');
-        document.getElementById('debug-output').textContent = 
-            'Erro: Usuário não está logado. Pontuação não enviada.';
         return;
     }
 
@@ -58,7 +62,7 @@ function enviarPontuacaoParaBackend(pontos) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            usuario_id: usuario.id,  // Usando usuario.id em vez de email
+            usuario_id: usuario.id, 
             pontos: pontos
         })
     })
@@ -70,44 +74,20 @@ function enviarPontuacaoParaBackend(pontos) {
         if (data.success) {
             if (data.atualizado) {
                 console.log('Record atualizado com sucesso! Novo record:', data.novo_record);
-                document.getElementById('debug-output').textContent = 
-                    `🎉 Novo record registrado: ${data.novo_record}`;
                 
                 // Atualiza o record no objeto do usuário no localStorage se necessário
                 usuario.record = data.novo_record;
                 localStorage.setItem('usuario', JSON.stringify(usuario));
             } else {
                 console.log('Pontuação não atualizada. Motivo:', data.motivo);
-                document.getElementById('debug-output').textContent = 
-                    `Pontuação atual: ${data.record_atual} (sua pontuação: ${pontos})`;
             }
         } else {
             console.error('Erro no servidor:', data.message);
-            document.getElementById('debug-output').textContent = 
-                'Erro ao atualizar record: ' + (data.message || 'Erro desconhecido');
         }
     })
     .catch(error => {
         console.error('Erro ao enviar pontuação:', error);
-        document.getElementById('debug-output').textContent = 
-            'Falha na conexão com o servidor. Tente novamente.';
     });
 }
 
-// Inicia o monitoramento quando a página estiver carregada
-document.addEventListener('DOMContentLoaded', () => {
-    // Espera o WASM carregar
-    const checkReady = setInterval(() => {
-        if (document.getElementById('terminal')) {
-            clearInterval(checkReady);
-            monitorarTerminalPython();
-            
-            // Adiciona um aviso visual
-            const debugDiv = document.getElementById('debug-output');
-            debugDiv.style.color = 'white';
-            debugDiv.style.fontSize = '18px';
-            debugDiv.textContent = 'Monitorando pontuação...';
-        }
-    }, 500);
-});
 

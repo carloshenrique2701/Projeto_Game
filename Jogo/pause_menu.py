@@ -7,9 +7,9 @@ class PauseMenu:
         self.screen = game.screen
         
         # Fontes consistentes com o menu principal
-        self.title_font = pg.font.Font('fonts/titulo.ttf', 74)
-        self.main_font = pg.font.Font('fonts/resto.ttf', 36)
-        self.small_font = pg.font.Font('fonts/resto.ttf', 24)
+        self.title_font = pg.font.Font('resources/fonts/titulo.ttf', 74)
+        self.main_font = pg.font.Font('resources/fonts/resto.ttf', 36)
+        self.small_font = pg.font.Font('resources/fonts/resto.ttf', 24)
         
         # Opções do menu
         self.options = [

@@ -1,7 +1,5 @@
 import pygame as pg
 from settings import *
-import json
-import os
 
 class Victory:
     def __init__(self, game):
